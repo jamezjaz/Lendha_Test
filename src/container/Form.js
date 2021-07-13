@@ -2,54 +2,31 @@ import React, { useState } from 'react';
 import Data from './Data';
 
 const Form = () => {
-  const [values, setValues] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirm_password: '',
-  });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChangeName = (event) => {
-    setValues({
-      ...values,
-      name: event.target.value,
-    });
-  };
-
-  const handleChangeEmail = (event) => {
-    setValues({
-      ...values,
-      email: event.target.value,
-    });
-  };
-
-  const handleChangePhone = (event) => {
-    setValues({
-      ...values,
-      phone: event.target.value,
-    });
-  };
-
-  const handleChangePassword = (event) => {
-    setValues({
-      ...values,
-      password: event.target.value,
-    });
-  };
-
-  const handleChangeConfPassword = (event) => {
-    setValues({
-      ...values,
-      confirm_password: event.target.value,
-    });
+  const handleChange = (event) => {
+    if (event.target.name === 'name') {
+      setName(event.target.value);
+    } else if (event.target.name === 'email') {
+      setEmail(event.target.value);
+    } else if (event.target.name === 'phone') {
+      setPhone(event.target.value);
+    } else if (event.target.name === 'password') {
+      setPassword(event.target.value);
+    } else {
+      setConfirmPassword(event.target.value);
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(values);
-    alert(`You're welcome to Lendha, ${values.name}!`);
+    console.log(name);
+    alert(`You're welcome to Lendha, ${name}!`);
     setIsSubmitted(true);
   };
 
@@ -63,8 +40,8 @@ const Form = () => {
               name="name"
               id="name"
               placeholder="Enter your name"
-              value={values.name}
-              onChange={handleChangeName}
+              value={name}
+              onChange={handleChange}
             />
             <br />
             <label htmlFor="email">Email</label>
@@ -72,8 +49,8 @@ const Form = () => {
               name="email"
               id="email"
               placeholder="Enter your email"
-              value={values.email}
-              onChange={handleChangeEmail}
+              value={email}
+              onChange={handleChange}
             />
             <br />
             <label htmlFor="phone">Phone</label>
@@ -81,8 +58,8 @@ const Form = () => {
               name="phone"
               id="phone"
               placeholder="Enter your phone number"
-              value={values.phone}
-              onChange={handleChangePhone}
+              value={phone}
+              onChange={handleChange}
             />
             <br />
             <label htmlFor="password">Password</label>
@@ -90,27 +67,27 @@ const Form = () => {
               name="password"
               id="password"
               placeholder="Enter your password"
-              value={values.password}
-              onChange={handleChangePassword}
+              value={password}
+              onChange={handleChange}
             />
             <br />
             <label htmlFor="password">Confirm Password</label>
             <input
-              name="password"
+              name="confirm-password"
               id="password"
               placeholder="Please, re-type your password"
-              value={values.confirm_password}
-              onChange={handleChangeConfPassword}
+              value={confirmPassword}
+              onChange={handleChange}
             />
             <br />
             <button type="submit">Create Account</button>
           </form>
         : 
           <Data
-            name={values.name}
-            email={values.email}
-            phone={values.phone}
-            password={values.password}
+            name={name}
+            email={email}
+            phone={phone}
+            password={password}
           />
       }
     </>
